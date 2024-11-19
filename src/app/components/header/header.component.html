@@ -1,0 +1,224 @@
+<div class="fixed-navbar">
+    <div class="main-header-wrap ">
+
+        <div class="topbar ">
+            <div class="container ">
+                <div class="row align-items-center  d-flex justify-content-between">
+                    <div class="col col-lg-3 col-md-4 col-4 ">
+                        <div class="contact-link ">
+                            <ul class="">
+
+                                <li class=""><a href="/Order_Tracking" class="">Order
+                                        Tracking</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col col-lg-6 col-md-4  col-8 ">
+                        <div class="help-link ">
+                            <p class=""> <a  class=""> <i class="fa fa-clock"></i> Sat - Thu : 09.00 AM
+                                    - 05.00 PM</a> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <header class="header-area undefined" [class.fixed-header]="isScrolled">
+            <div class="header-middle" [class.fixed-header-style]="isScrolled">
+                <div class="container ">
+                    <div class="row align-items-center">
+                        <div class="col-xl-2 col-lg-2 col-sm-3 ">
+                            <div class="navbar-header"><a class="navbar-brand" href="/"><img alt="logo"
+                                        routerLink="/Login"
+                                        srcset="https://www.smileagents.com/wp-content/uploads/2021/08/Logo.png"
+                                        src="https://www.smileagents.com/wp-content/uploads/2021/08/Logo.png"
+                                        decoding="async" data-nimg="1" loading="lazy"
+                                        style="color: transparent;width: 130px;"></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6  col-lg-6 col-sm-5 col-12 hide-below-992">
+                            <div class="main-menu d-flex justify-content-center text-dark">
+                                <nav id="mobile-menu">
+                                    <ul class="nav text-dark">
+                                        <li class="text-dark"><a routerLink="/">Home </a>
+
+                                        </li>
+                                        <li class="mega" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"> <a href="/Pro"> Store </a>
+                                           
+                                        </li>
+                                        <li class="text-dark"><a href="/events">Events </a>
+
+                                        </li>
+
+                                        <li class="text-dark"><a routerLink="/About_Us">About us </a></li>
+                                        <li class="text-dark"><a routerLink="/Contact">Contact us</a></li>
+                                     
+
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                      
+
+                        <div class="col-xl-4 col-lg-4 col-sm-12 col-12">
+                            <div class="middle-right">
+                                <ul>
+                                    <li class="sm-b d-none">
+                                        <img alt="logo" routerLink="/home"
+                                            srcset="https://www.smileagents.com/wp-content/uploads/2021/08/Logo.png"
+                                            src="https://www.smileagents.com/wp-content/uploads/2021/08/Logo.png"
+                                            decoding="async" data-nimg="1" loading="lazy" class="md-logo">
+
+                                    </li>
+
+                                    <li><a routerLink="/Cart"><i class="fa-solid fa-cart-shopping bg-main"><span
+                                                    class="cart-count">{{this.tempOrderCount || '0'}}</span></i>
+                                            <!-- <p class="text-dark"><small>{{this.tempOrderCount || '0'}} items</small>SAR {{this.totalPrice || '0'}}</p> -->
+                                        </a></li>
+                                    <li>
+                                        <div class="header-area-right">
+                                            <div class="profile">
+                                                <a routerLink="/Orders" *ngIf="this.user">
+                                                    <img *ngIf="user.image" class="me-2" src="{{user.image}}" style="height: 37px;border-radius: 50%;" alt="">
+                                                <i *ngIf="!user.image" class="fa-solid fa-user bg-main"></i>
+                                                    <span>
+                                                        <small class="text-dark">My Account</small><span
+                                                            class="text-dark d-block">Hello, {{user.name}}
+                                                        </span></span>
+                                                </a>
+                                                <a routerLink="/Login" *ngIf="!this.user">
+                                                    <i class="fa-solid fa-user bg-main"></i><span>
+                                                        <small class="text-dark">My Account</small><span
+                                                            class="text-dark d-block">Hello, Sign in </span></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div id="header-sticky" class="menu-area sm-b d-none ">
+                                            <div class="container">
+                                                <div class="second-menu">
+                                                    <div class="row align-items-center">
+                                                        <!-- <div class="col-xl-3 col-lg-3 col-md-7 col-sm-5 col-3">
+                    <div class="header-category-item">
+                        <button class="header-category-toggle-btn" (click)="showDropdown = !showDropdown">
+                            <span class="tex">Browse Categories</span>
+                        </button>
+
+                        <div class="category-shop-item category-shop-item-toggle" *ngIf="showDropdown"
+                            (mouseleave)="showDropdown = false" [@dropdownAnimation]>
+                            <ul id="metis-menu">
+                                <li *ngFor="let cate of cate_gory_data"><a
+                                        (click)="onCategoryClick(cate)"><img src="{{cate.image}}"
+                                            class="cate_pro_image" alt="">{{cate.name}}</a></li>
+
+
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div> -->
+                                                        <div
+                                                            class="col-xl-7 col-lg-6 col-md-1 col-1 text-right text-xl-right d-none d-lg-block">
+
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div>
+                                                                <div class="mobileMenu "
+                                                                    [ngClass]="{ 'show': isMenuOpen }">
+                                                                    <div class="menu-close">
+                                                                        <div class="clox" (click)="closeMenu()"><i
+                                                                                class="fa-solid fa-xmark"></i></div>
+                                                                    </div>
+                                                                    <ul class="responsivemenu">
+                                                                        <ul
+                                                                            class="MuiList-root MuiList-padding css-1ontqvh">
+                                                                            <p routerLink="/">Home </p>
+                                                                        </ul>
+
+                                                                        <ul class="MuiList-root MuiList-padding css-1ontqvh">
+                                                                            
+                                                                            <p (click)="toggleSubmenu()">Shop
+                                                                             <i class="fa-solid fa-caret-up" *ngIf="submenuOpen"></i>
+                                                                             <i class="fa-solid fa-caret-down" *ngIf="!submenuOpen"></i></p>
+                                                                          
+                                                                            <div *ngIf="submenuOpen" class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered css-c4sutr">
+                                                                              <div class="MuiCollapse-wrapper MuiCollapse-vertical css-hboir5">
+                                                                                <div class="MuiCollapse-wrapperInner MuiCollapse-vertical css-8atqhb">
+                                                                                  <ul class="MuiList-root MuiList-padding subMenu css-1ontqvh">
+                                                                                     
+                                
+                                                                                    <li style="cursor: pointer; padding: 0px 0px; margin: 0px   ;" *ngFor="let cat of cate_gory_data">
+                                                                                        <a class="active" (click)="onCategoryClick(cat)" >{{cat.name}}</a>
+                                                                                      </li>
+                                                                                    
+                                                                                  </ul>
+                                                                                </div>
+                                                                              </div>
+                                                                            </div>
+                                                                          </ul>
+                                                                          
+
+                                                                          <ul
+                                                                          class="MuiList-root MuiList-padding css-1ontqvh">
+                                                                          <p routerLink="/About_Us">About us </p>
+                                                                      </ul>
+                                                                        <ul
+                                                                            class="MuiList-root MuiList-padding css-1ontqvh">
+                                                                            <p routerLink="/Contact">Contact us </p>
+                                                                        </ul>
+                                                                       
+
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="showmenu mobail-menu"><button type="button"
+                                                                        (click)="toggleMenu($event)"
+                                                                        class="navbar-toggler open-btn"><span
+                                                                            class="icon-bar first-angle"></span><span
+                                                                            class="icon-bar middle-angle"></span><span
+                                                                            class="icon-bar last-angle"></span></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+
+
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="mega-menu" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" [class.active]="isHovered">
+                    <li style="cursor: pointer;text-align: center;" *ngFor="let cat of limitedCategories"><a
+                            (click)="onCategoryClick(cat)" class="align-center">
+                            
+                           <img [src]="cat.image" width="80" class="d-block m-auto"> 
+                           <span> {{cat?.name}}</span>
+                        
+                        
+                        </a></li>
+
+                </ul>
+            </div>
+
+        </header>
+
+    </div>
+</div>
+
+
+<!-- Use Angular's string interpolation to build the WhatsApp URL dynamically -->
+<a class="float" target="_blank" [href]="'https://api.whatsapp.com/send?phone=' + phoneNumber + '&text=Hi%2C%20I%20am%20a%20web%20user%20and%20want%20more%20info.'">
+    <i class="far fa-comment-dots my-float"></i>
+  </a>
+  

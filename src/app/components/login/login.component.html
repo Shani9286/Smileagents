@@ -1,0 +1,88 @@
+<div class="loader" *ngIf="loading">
+    <div class="loading_box">
+<img src="../../../assets/images/Smile-Agents-Intro-ezgif.com-crop.gif" style="    height: 100px;
+    width: 100%;" alt=""></div>
+</div>
+<div class="login-area separator-padding" *ngIf="screen == 'login_view'">
+    <div class="container">
+        <div class="contact-form-wrap">
+            <div class="heading-title">
+                <h2>Login</h2>
+            </div>
+            <form class="contact-form" [formGroup]="login_form">
+
+                <div class="row">
+                    <div class="form-field"><label>Username or email address *</label>
+                    <input type="email" formControlName="email"
+                            variant="outlined" name="email" placeholder="Enter Email"></div>
+                    <div class="form-field"><label>Password *</label>
+                    <input type="password" variant="outlined" formControlName="password"
+                            name="password" placeholder="*****"></div>
+                    <div class="form-field">
+                        
+                    </div>
+                    <div class="form-field">
+                    <button type="submit" *ngIf="btn_loading"  class="btn-style-1">
+                     
+                        <div class="wrapper">
+                          <span class="letter letter1">L</span>
+                          <span class="letter letter2">o</span>
+                          <span class="letter letter3">a</span>
+                          <span class="letter letter4">d</span>
+                          <span class="letter letter5">i</span>
+                          <span class="letter letter6">n</span>
+                          <span class="letter letter7">g</span>
+                          <span class="letter letter8">.</span>
+                          <span class="letter letter9">.</span>
+                          <span class="letter letter10">.</span>
+                        </div>
+                        
+                    </button>
+                    <button type="submit" *ngIf="!btn_loading"   (click)="login()" class="btn-style-1">Login Now</button>
+                    <div id="alert-container" class="mt-1 mb-1"></div>
+
+                    <div class="w-100 d-flex justify-content-between">
+                        <a class="forgot" routerLink="/Signup">Create Account </a>
+                        <a class="forgot" (click)="screen = 'forget_email_view'">Lost your password? </a>
+
+                    </div>
+                    <div class="w-100 d-flex justify-content-center">
+ 
+                        <div class="google-btn-container">
+                            <button class="google-btn" (click)="loginWithGoogle()">
+                              <svg class="google-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="20px" height="20px">
+                                <path fill="#4285F4" d="M 47.118 24.552 C 47.118 22.843 46.981 21.263 46.737 19.737 L 24 19.737 L 24 28.804 L 37.093 28.804 C 36.505 31.626 34.932 33.99 32.526 35.429 L 32.526 40.344 L 40.196 40.344 C 44.641 36.328 47.118 30.052 47.118 24.552 Z"/>
+                                <path fill="#34A853" d="M 24 48 C 30.48 48 36.085 45.766 40.196 40.344 L 32.526 35.429 C 30.278 36.936 27.413 37.737 24 37.737 C 17.802 37.737 12.569 33.495 10.641 27.922 L 3.74 33.121 L 3.74 38.2 C 7.829 44.042 15.418 48 24 48 Z"/>
+                                <path fill="#FBBC05" d="M 10.641 27.922 C 10.158 26.414 9.868 24.804 9.868 23.158 C 9.868 21.512 10.158 19.902 10.641 18.395 L 10.641 13.315 L 3.74 18.514 C 2.358 21.314 1.552 24.452 1.552 27.737 C 1.552 31.022 2.358 34.161 3.74 36.96 L 10.641 31.761 Z"/>
+                                <path fill="#EA4335" d="M 24 9.579 C 27.011 9.579 29.703 10.585 31.785 12.568 L 40.49 3.864 C 36.085 0.032 30.48 -2.862 24 2.862 C 15.418 2.862 7.829 6.82 3.74 12.662 L 10.641 18.395 C 12.569 12.822 17.802 9.579 24 9.579 Z"/>
+                              </svg>
+                              <span>Continue with Google</span>
+                            </button>
+                          </div>
+                          
+                          
+
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="login-area separator-padding" *ngIf="screen  == 'forget_email_view'"> 
+    <div class="container">
+        <div class="contact-form-wrap">
+            <div class="heading-title">
+                <h2>Reset Password</h2>
+            </div>
+            <form class="contact-form">
+                <div class="row">
+                    <div class="form-field"><label>Email*</label><input type="email" variant="outlined" name="email"
+                            value=""></div>
+                    <div class="form-field"><button type="submit" class="btn-style-1">Resend Password</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+ 

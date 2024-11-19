@@ -1,0 +1,81 @@
+<div class="loader" *ngIf="loading">
+    <div class="loading_box">
+<img src="../../../assets/images/Smile-Agents-Intro-ezgif.com-crop.gif" style="    height: 100px;
+    width: 100%;" alt=""></div>
+</div>
+
+
+
+
+<section class="page-title">
+  <div class="container">
+      <div class="row">
+          <div class="col col-xs-12">
+              <div class="breadcumb-wrap">
+                  <h2>Events</h2>
+                  <ol>
+                      <li><a routerLink="/"><i class="fa-solid fa-caret-right"></i> Home</a></li>
+                      <li>Events</li>
+                  </ol>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<div class="blog-grid-page" *ngIf="screen == 'main'">
+  <section class="blog-section separator-padding">
+    <div class="container">
+      <div class="blog-items">
+        <div class="row">
+          <div class="col col-xl-4 col-lg-6 col-md-6 col-12" *ngFor="let item of event">
+            <div class="blog-item">
+              <div class="blog-img" style="position: relative;" (click)="oneventClick(item)">
+                <img alt="" src="{{ item.event_image[0].image }}" height="190" decoding="async"
+                     data-nimg="1" loading="lazy" style="color: transparent;">
+                <!-- Upcoming badge conditionally shown if the item date is in the future -->
+                <span *ngIf="isUpcoming(item.date)" class="badge upcoming-badge">Upcoming</span>
+              </div>
+              <div class="blog-content">
+                <ul class="w-100 justify-content-between">
+                  <li><i class="fa-solid fa-calendar"></i> {{ item.date }}</li>
+                  <li><i class="fa-solid fa-user"></i> {{ 'Admin' }}</li>
+                </ul>
+                <h2><a>{{ truncateText(item.name,5) }}</a></h2>
+                <a class="more" (click)="oneventClick(item)">Read More</a>
+              </div>
+            </div>
+          </div>
+          
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<section class="blog-single-page-area separator-padding" *ngIf="screen == 'read_view' " >
+  <div class="container">
+    <div class="row">
+      <div class="col col-lg-12 col-12 undefined">
+        <div class="blog-single-wrap">
+          <div class="blog-single-text">
+            <div class="blog-img"><img alt=""
+                srcset="{{this.selected_blog.event_image[0].image}}"
+                src="{{this.selected_blog.event_image[0].image}}"
+                width="1600" height="800" decoding="async" data-nimg="1" loading="lazy" style="color: transparent;">
+            </div>
+            <ul class="w-100 justify-content-between">
+              <li><i class="fa-solid fa-calendar"></i> {{this.selected_blog.date}}</li>
+              <li><i class="fa-solid fa-user"></i> Admin</li>
+            </ul>
+            <p [innerHtml]="selected_blog.description"></p>
+          </div>
+       
+         
+        </div>
+      </div>
+   
+    </div>
+  </div>
+</section>

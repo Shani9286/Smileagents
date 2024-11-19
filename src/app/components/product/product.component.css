@@ -1,0 +1,114 @@
+i.fa-solid.fa-cart-shopping {
+  color: #000;
+  font-size: 14px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #e9f0f3;
+  padding: 8px 12px;
+  border-radius: 2px;
+  width: 100%;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  background: none;
+  flex: 1;
+  font-size: 14px;
+  color: #666;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  color: #333;
+}
+
+.product-info>h2 {
+  cursor: pointer;
+}
+
+.search-bar button svg {
+  width: 18px;
+  height: 18px;
+}
+
+
+
+
+/* Basic styles for the product card */
+.product-item {
+  position: relative;
+  overflow: hidden;
+}
+
+/* If the product is out of stock, add a black and white overlay */
+.product-image.out-of-stock {
+  filter: grayscale(100%) opacity(0.6);
+  /* Apply grayscale and reduce opacity */
+  transition: filter 0.3s ease;
+}
+
+/* Make sure that the product card is still clickable */
+.product-image.out-of-stock .image-container img {
+  pointer-events: none;
+  /* Disable hover effect on image */
+}
+
+/* Hover effect for the out-of-stock product */
+.product-item:hover .out-of-stock-overlay {
+  display: block;
+  cursor: none;
+}
+
+/* Overlay that appears on hover when the product is out of stock */
+.out-of-stock-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  /* Darken the overlay */
+  /* display: none; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  z-index: 10;
+  /* Ensures the overlay is above other content */
+}
+
+/* Styling for the Notify Me button */
+.notify-btn {
+  padding: 10px 20px;
+  background-color: #ff7f50;
+  /* Orange or any color you prefer */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+}
+
+.notify-btn:hover {
+  background-color: #ff5733;
+  /* Darker shade on hover */
+}

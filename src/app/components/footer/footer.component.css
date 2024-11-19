@@ -1,0 +1,30 @@
+/* social-media.component.css */
+.social-media-icons {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .social-icon {
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    color: #007bff; /* Color change on hover */
+  }
+  
+  /* Optional: Add size and colors to the icons */
+  .social-icon i {
+    font-size: 18px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .social-icon:hover i {
+    transform: scale(1.1); /* Slight zoom on hover */
+  }
+  

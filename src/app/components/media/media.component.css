@@ -1,0 +1,35 @@
+.blog-grid-page .blog-section .blog-items .blog-item {
+  background: #f9f9f9 !important;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.blog-item {
+  background-color: var(--white-color);
+  border: 1px solid var(--divider-color);
+   border-radius: 40px; 
+  display: block; 
+align-items: center; 
+  height: calc(100% - 30px);
+  margin-bottom: 30px;
+  padding: 20px;
+}
+
+
+.upcoming-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.blog-img{
+  height: 200px;
+  object-fit: cover;
+}
+.blog-img img{
+  height: 100%;
+  object-fit: cover;
+}

@@ -1,0 +1,225 @@
+<div class="preloader" *ngIf="loading">
+  <svg class="cart" role="img" aria-label="Shopping cart line animation" viewBox="0 0 128 128" width="128px"
+    height="128px" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="8">
+      <g class="cart__track" stroke="hsla(0,10%,10%,0.1)">
+        <polyline points="4,4 21,4 26,22 124,22 112,64 35,64 39,80 106,80" />
+        <circle cx="43" cy="111" r="13" />
+        <circle cx="102" cy="111" r="13" />
+      </g>
+      <g class="cart__lines" stroke="currentColor">
+        <polyline class="cart__top" points="4,4 21,4 26,22 124,22 112,64 35,64 39,80 106,80" stroke-dasharray="338 338"
+          stroke-dashoffset="-338" />
+        <g class="cart__wheel1" transform="rotate(-90,43,111)">
+          <circle class="cart__wheel-stroke" cx="43" cy="111" r="13" stroke-dasharray="81.68 81.68"
+            stroke-dashoffset="81.68" />
+        </g>
+        <g class="cart__wheel2" transform="rotate(90,102,111)">
+          <circle class="cart__wheel-stroke" cx="102" cy="111" r="13" stroke-dasharray="81.68 81.68"
+            stroke-dashoffset="81.68" />
+        </g>
+      </g>
+    </g>
+  </svg>
+
+</div>
+
+
+
+
+<section class="page-title">
+  <div class="container">
+    <div class="row">
+      <div class="col col-xs-12">
+        <div class="breadcumb-wrap">
+          <h2>Products</h2>
+          <ol>
+            <li><a routerLink="/"><i class="fa-solid fa-caret-right"></i> Home</a></li>
+            <li>Products</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="shop-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <!-- product-filter.component.html -->
+        <div class="shop-filter-wrap">
+          <!-- Category Filter -->
+          <div class="filter-item">
+            <div class="shop-filter-item category-widget">
+              <h2>Shop By Category</h2>
+              <ul>
+                <li *ngFor="let cat of catlog">
+                  <label class="topcoat-radio-button__label">
+                    {{ cat.name }}
+                    <input type="radio" name="category" [value]="cat.id" [(ngModel)]="selectedCategoryId"
+                      (change)="onFilterChange()">
+                    <span class="topcoat-radio-button"></span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Brand Filter -->
+          <div class="filter-item">
+            <div class="shop-filter-item category-widget">
+              <h2>Shop By Brand</h2>
+              <ul>
+                <li *ngFor="let b of brands">
+                  <label class="topcoat-radio-button__label">
+                    {{ b.name }}
+                    <input type="radio" name="brand" [value]="b.id" [(ngModel)]="selectedBrandId"
+                      (change)="onFilterChange()">
+                    <span class="topcoat-radio-button"></span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Price Filter -->
+          <div class="filter-item">
+            <div class="shop-filter-item category-widget">
+              <h2>Price</h2>
+              <ul>
+                <li>
+                  <label class="topcoat-radio-button__label">
+                    All prices
+                    <input type="radio" name="price" value="" [(ngModel)]="selectedPriceRange"
+                      (change)="onFilterChange()">
+                    <span class="topcoat-radio-button"></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="topcoat-radio-button__label">
+                    SAR 50 - SAR 100
+                    <input type="radio" name="price" value='{"min":50,"max":100}' [(ngModel)]="selectedPriceRange"
+                      (change)="onFilterChange()">
+                    <span class="topcoat-radio-button"></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="topcoat-radio-button__label">
+                    SAR 100 - SAR 200
+                    <input type="radio" name="price" value='{"min":100,"max":200}' [(ngModel)]="selectedPriceRange"
+                      (change)="onFilterChange()">
+                    <span class="topcoat-radio-button"></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="topcoat-radio-button__label">
+                    SAR 200 and more
+                    <input type="radio" name="price" value='{"min":200,"max":null}' [(ngModel)]="selectedPriceRange"
+                      (change)="onFilterChange()">
+                    <span class="topcoat-radio-button"></span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-8">
+
+        <div *ngIf="filter">
+          <button style="padding: 8px; border-radius: 7px;" (click)="clearFilters()">Clear Filters</button>
+        </div>
+
+        <div class="shop-section-top-inner">
+          <div class="shoping-list">
+            <ul class="nav nav-tabs">
+
+              <li class="nav-item"><a class="nav-link"><i class="fa fa-align-justify"></i></a></li>
+
+
+            </ul>
+
+          </div>
+          <div class="search-bar w-50">
+            <input type="text" placeholder="Search Products" [(ngModel)]="searchTerm" (input)="onSearchChange()" />
+            <button type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                viewBox="0 0 16 16">
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.442 1.212a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z" />
+              </svg>
+            </button>
+          </div>
+          <div class="shoping-product"><span>Showing Products {{ this.current_page ?? 0 }} - {{ this.last_page ?? 0 }}
+              Of
+              {{ this.product_data?.length ?? 0 }} Result</span></div>
+        </div>
+        <div class="tab-content">
+          <div class="tab-pane active">
+            <div class="product-wrap">
+              <div class="row">
+
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let item of product_data; let i = index">
+
+                  <div [ngClass]="{'out-of-stock': item.stock == 0}">
+
+                    <div class="product-item">
+
+                      <!-- Product Image with Overlay if Out of Stock -->
+                      <div class="product-image">
+                        <div class="image-container">
+                          <img [src]="item.product_image[0].image" alt="" class="fade-image" />
+                        </div>
+                        <ul class="tag-wrap">
+                          <li class="tag trending">{{ item.category.name }}</li>
+                          <li class="tag trending" style="z-index: 9999;    background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(255, 255, 255, 0.4) 100%);
+            " *ngIf="item.stock == 0">Out of Stock</li>
+                        </ul>
+
+                        <!-- Overlay and Notify Button when out of stock -->
+                        <div class="out-of-stock-overlay" *ngIf="item.stock == 0">
+                          <button class="notify-btn" (click)="notify_us(item)">Notify Me</button>
+                        </div>
+                      </div>
+
+                      <!-- Product Info Section -->
+                      <div class="product-info">
+                        <h2><a (click)="get_product_detail(item)">{{ truncateWords(item.name, 3) }}</a></h2>
+
+                        <div class="price">
+                          <span class="present-price" (click)="redirectToLogin()" style="cursor: pointer;" *ngIf="!user">
+                            Login to view price
+                          </span>                          <span class="present-price" *ngIf="this.user">SAR {{ item.price }}</span>
+                          <del class="old-price" *ngIf="this.user">SAR {{ item.perv_price }}</del>
+
+                          <button *ngIf="item.stock != 0" class="cart-btn" (click)="get_product_detail(item)"
+                            data-tooltip-id="cart-tooltip" data-tooltip-content="add to cart" data-tooltip-place="left">
+                            <i class="fa-solid fa-angle-right" style="color: #fff;"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p class="alert alert-danger" *ngIf="this.current_page == 0">No products found based on the selected
+                  filters</p>
+
+                <p class="alert alert-danger" *ngIf="this.product_data.length == 0"> Product not found</p>
+              </div>
+              <div class="pagination-wrapper pagination-wrapper-center">
+                <ul class="pg-pagination" *ngIf="this.last_page !== 1">
+                  <li><a aria-label="Previous"><i class="fa fa-angle-left "></i></a></li>
+
+                  <li><a aria-label="Next"><i class="fa fa-angle-right"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

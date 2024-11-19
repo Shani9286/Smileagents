@@ -1,0 +1,262 @@
+<div class="preloader" *ngIf="loading">
+  <svg class="cart" role="img" aria-label="Shopping cart line animation" viewBox="0 0 128 128" width="128px"
+    height="128px" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="8">
+      <g class="cart__track" stroke="hsla(0,10%,10%,0.1)">
+        <polyline points="4,4 21,4 26,22 124,22 112,64 35,64 39,80 106,80" />
+        <circle cx="43" cy="111" r="13" />
+        <circle cx="102" cy="111" r="13" />
+      </g>
+      <g class="cart__lines" stroke="currentColor">
+        <polyline class="cart__top" points="4,4 21,4 26,22 124,22 112,64 35,64 39,80 106,80" stroke-dasharray="338 338"
+          stroke-dashoffset="-338" />
+        <g class="cart__wheel1" transform="rotate(-90,43,111)">
+          <circle class="cart__wheel-stroke" cx="43" cy="111" r="13" stroke-dasharray="81.68 81.68"
+            stroke-dashoffset="81.68" />
+        </g>
+        <g class="cart__wheel2" transform="rotate(90,102,111)">
+          <circle class="cart__wheel-stroke" cx="102" cy="111" r="13" stroke-dasharray="81.68 81.68"
+            stroke-dashoffset="81.68" />
+        </g>
+      </g>
+    </g>
+  </svg>
+
+</div>
+<section class="page-title">
+  <div class="container">
+    <div class="row">
+      <div class="col col-xs-12">
+        <div class="breadcumb-wrap">
+          <h2>{{ this.product_data?.name }}</h2>
+          <ol>
+
+            <li routerLink="/Pro">Product</li>
+
+            <li *ngIf="this.product_data.category.parent"
+              (click)="onCategoryClick(this.product_data.category.parent?.id)">
+              {{this.product_data.category.parent?.name}}</li>
+            <li><a><i class="fa-solid fa-caret-right"></i>                                                        
+                {{ this.product_data?.category.name }}</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="product-single-section mt-5">
+  <div class="container mt-5">
+    <div class="product-details">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="product-single-img">
+            <div class="image-slider">
+              <!-- Main image display -->
+              <div class="main-image">
+                <img [src]="product_data?.mainImage || defaultImage" alt="Product Image" />
+              </div>
+
+              <!-- Small images in a horizontal line -->
+              <div class="thumbnail-container" *ngIf="product_data.product_image">
+                <div *ngFor="let image of product_data.product_image; let i = index" (click)="setCurrentImage(i)"
+                  class="thumbnail" [ngClass]="{'active': currentIndex === i}">
+                  <img [src]="image.image" alt="Thumbnail" />
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="col-lg-7">
+
+          <div class="product-single-content">
+            <span routerLink="/">Home / </span>
+            <span routerLink="/Pro">Products </span>
+            <span *ngIf="this.product_data.category.parent"
+              (click)="onCategoryClick(this.product_data.category.parent?.id)">
+              /{{this.product_data.category.parent?.name}}</span>
+            <span (click)="onCategoryClick(this.product_data.category.id)"> / {{ this.product_data.category.name }}
+            </span> / {{ this.product_data.name }}
+            <h5 class="mt-5">{{ this.product_data.name }} </h5>
+            <h6> <span class="present-price" *ngIf="!this.user">Login to view price</span>
+              <del class="old-price" *ngIf="this.user"> SAR {{ this.product_data.perv_price }}</del>
+              <span class="present-price" *ngIf="this.user"> SAR {{this.product_data.price }} </span>  
+              
+            </h6>
+            <p [innerHTML]="truncateText(product_data.description, 30)"></p>
+            <div class="product-filter-item color" *ngIf="product_data.variant.length == 0">
+              <div class="pro-single-btn">
+                <b>Quantity:</b>
+                <div class="MuiGrid-root quantity cart-plus-minus css-rfnosa">
+                  <input type="text" [value]="quantity">
+                </div>
+
+
+              </div>
+
+            </div>
+
+            <div class="stock">
+              <button (click)="addToCart()" class="btn-style-1">Add to cart</button>
+            </div>
+            <div class="category">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="cart-area separator-padding">
+      <div class="container">
+        <div class="form">
+          <div class="cart-wrapper" *ngIf="product_data.variant.length > 0 ">
+            <div class="row">
+              <div class="col-12 variants-wrapper">
+
+                <div class="product" *ngFor="let varr of product_data.variant"
+                  [ngClass]="{'out-of-stock': varr.stock == 0}">
+                  <div>SKU: {{varr.sku}}</div>
+                  <h2 style="cursor: pointer;" (click)="open_variant_detail(variant_detail_modal , varr)">{{varr.name}}</h2>
+                  <div class="MuiGrid-root quantity cart-plus-minus css-rfnosa d-flex justify-content-center">
+                    <!-- Decrement and increment buttons -->
+                    <div class="label bb bl qty-label "> QTY</div>
+                    <div class="">
+                      <input type="text" [(ngModel)]="varr.quantity" class="bb text-center input_number">
+                    </div>
+                    <!-- "Notify Me" button overlay when out of stock -->
+                    <div *ngIf="varr.stock == 0" class="out-of-stock-overlay">
+                      <button class="notify-btn" (click)="notify_us(varr)">Notify Me</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="product-tab-area">
+        <ul class="main-tab nav nav-tabs">
+          <li #tabLink class="nav-item" [class.active]="selectedTab === 1"><a (click)="selectTab(1)"
+              class="nav-link">Specification </a></li>
+          <li *ngIf="this.product_data.Additional" class="nav-item" [class.active]="selectedTab === 2"><a
+              (click)="selectTab(2)" class="nav-link">Additional Description</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane" [class.active]="selectedTab === 1">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="Descriptions-item">
+                  <p [innerHTML]="this.product_data.description"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" [class.active]="selectedTab === 2">
+            <div class="Additional-wrap">
+              <div class="row">
+                <div class="col-12">
+                  <div class="Descriptions-item">
+                    <p [innerHTML]="this.product_data?.Additional"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <ng-template #variant_detail_modal let-modal>
+  
+    <div class="product-details maodl_data  padding-40">
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-end">
+          <button class="btn close_btn_modal" (click)="close_modal()"><i class="fa fa-x"></i></button>
+        </div>
+        <div class="col-lg-5">
+          <div class="product-single-img">
+            <div class="image-slider">
+              <!-- Main image display -->
+              <div class="main-image">
+                <img [src]="this.selected_variant.image || defaultImage" alt="Product Image" />
+              </div>
+
+              <!-- Small images in a horizontal line -->
+               
+            </div>
+
+
+          </div>
+        </div>
+        <div class="col-lg-7">
+
+          <div class="product-single-content">
+            <span routerLink="/">Home / </span>
+            <span routerLink="/Pro">Products </span>
+            <span *ngIf="this.product_data.category.parent"
+              (click)="onCategoryClick(this.product_data.category.parent?.id)">
+              /{{this.product_data.category.parent?.name}}/</span>
+            <span (click)="onCategoryClick(this.product_data.category.id)"> / {{ this.product_data.category.name }}
+            </span> / {{ this.product_data.name }}/Variant/{{ this.selected_variant.name }}
+            <h5 class="mt-5">{{ this.product_data.name }} - {{ this.selected_variant.name }} </h5>
+               
+              <div class="product-filter-item color" *ngIf="this.user">
+                <div class="pro-single-btn">
+                  <b>Price:</b>
+                  <div class="MuiGrid-root quantity cart-plus-minus css-rfnosa">
+                    SAR {{this.selected_variant.pirce  }}
+                  </div>
+  
+  
+                </div>
+  
+              </div>
+              <div class="product-filter-item color" *ngIf="!this.user">
+                <div class="pro-single-btn">
+                  <b>Price:</b>
+                  <div class="MuiGrid-root quantity cart-plus-minus css-rfnosa">
+                    Login to View Price
+                  </div>
+  
+  
+                </div>
+  
+              </div>
+              <!-- <del class="old-price" *ngIf="this.user">SAR {{ totalPrice }}</del> -->
+             <!-- <p [innerHTML]="truncateText(product_data.description, 30)"></p> -->
+              <!-- <div class="button_one_line" >
+             <div class="product-filter-item color" *ngIf="this.selected_variant.stock != 0">
+              <div class="pro-single-btn">
+                <b>Quantity:</b>
+                <div class="MuiGrid-root quantity cart-plus-minus css-rfnosa">
+                  <input type="number" [(ngModel)]="this.selected_variant.quantity" min="1" />
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="stock">
+              <button (click)="addToCart()" class="btn-style-1">Add to cart</button>
+            </div>
+          </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>

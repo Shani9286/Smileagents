@@ -1,0 +1,107 @@
+ .cate_pro_image {
+            height: 38px;
+            width: 58px;
+        }
+        .header-area {
+            z-index: 99;
+            background: #fff;
+        }
+        /* Custom class to hide elements for screens smaller than 992px */
+.hide-below-992 {
+    display: block; /* Default to show the element */
+  }
+  
+  @media (max-width: 991.98px) {
+    .hide-below-992 {
+      display: none; /* Hide the element on screens below 992px */
+    }
+  }
+
+
+  .responsivemenu {
+    list-style: none; 
+    padding-left: 0; 
+     padding-top: 10px; 
+     display: block !important;
+}
+
+  
+  .responsivemenu li a, .responsivemenu li p, .responsivemenu ul {
+    display: block;
+    padding: 13px 35px;
+    font-size: 16px;
+    letter-spacing: 0;
+    text-transform: capitalize;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+}
+.responsivemenu ul.subMenu {
+  padding-top: 0;
+  padding-left: 15px;
+  padding-right: 0;
+}
+.responsivemenu ul a, .responsivemenu ul p {
+    color: #fff;
+    position: relative;
+    font-size: 16px;
+    
+}
+
+.ng-tns-c11-0 .fa{
+  color: #f7b916;
+}
+
+
+
+.float{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  background-color:#25d366;
+  color:#FFF;
+  border-radius:50px;
+  text-align:center;
+  font-size:30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+
+.my-float{
+  margin-top:16px;
+}
+
+.mega-menu{
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  height: 100px;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  background-color: #f5f5f5;
+  padding: 0px 100px;
+  position: absolute;
+  opacity: 0; 
+  transition: 0.4s;
+  visibility: hidden;
+}
+.mega-menu li{
+  cursor: pointer;
+    width: 20%;
+    display: table;
+    margin: auto;
+    cursor: pointer;
+}
+.mega-menu li span{
+  color: #000;
+}
+.mega-menu.active {
+  
+  opacity: 1; 
+  transition: 0.4s;
+  visibility: visible;
+  /* Add your desired styles here */
+}
